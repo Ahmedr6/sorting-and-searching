@@ -1,0 +1,55 @@
+program BinarySearch;
+
+var
+  left, right, mid, x, i, j, temp: integer;
+  arr: array[0..7] of integer;
+
+begin
+  left := 0;
+  right := 7;
+  mid := 0;
+  x := 2; // the number which we will search for
+
+  arr[0] := 2;
+  arr[1] := 3;
+  arr[2] := 1;
+  arr[3] := 5;
+  arr[4] := 0;
+  arr[5] := 8;
+  arr[6] := 6;
+  arr[7] := 9;
+
+  // Bubble sort
+  for j := 0 to 7 do
+  begin
+    for i := 0 to 6 do
+    begin
+      if arr[i + 1] < arr[i] then
+      begin
+        temp := arr[i];
+        arr[i] := arr[i + 1];
+        arr[i + 1] := temp;
+      end;
+    end;
+  end;
+
+  writeln('Sorted array: ');
+  for i := 0 to 7 do
+    write(arr[i], ' ');
+  writeln;
+
+  // Binary search
+  while left <= right do
+  begin
+    mid := left + (right - left) div 2;
+    if arr[mid] = x then
+    begin
+      writeln('2 is the ', mid, 'th number of the array');
+      break;
+    end
+    else if arr[mid] > x then
+      right := mid - 1
+    else
+      left := mid + 1;
+  end;
+end.
